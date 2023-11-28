@@ -11,6 +11,7 @@ import { StyledButton } from "../StyledButton";
 
 const LandingPage = () => {
 const [inputValue, setInputValue] = useState({
+    leads: 1000,
     CPMValue: 150,
     CTRValue: 1,
     CRValue: 20,
@@ -61,6 +62,13 @@ const [inputValue, setInputValue] = useState({
       label: `100%`,
     },
   ];
+
+  const handleLeadsTextFieldChange = (event) => {
+    setInputValue({
+        ...inputValue,
+        leads: Number(event.target.value)
+    })
+  }
 
   const handleCPMSliderChange = (event, newValue) => {
     setInputValue({
@@ -118,6 +126,36 @@ const [inputValue, setInputValue] = useState({
     })
   }
 
+  const validateInputs = () => {
+    const { CPMValue, CTRValue, CRValue, LCValue, leads } = inputValue;
+ 
+    if (
+      CPMValue < 50 ||
+      CPMValue > 1500 ||
+      CTRValue < 0.5 ||
+      CTRValue > 5 ||
+      CRValue < 0.5 ||
+      CRValue > 100 ||
+      LCValue < 0.5 ||
+      LCValue > 100 ||
+      leads <= 0
+    ) {
+      return false;
+    }
+ 
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (!validateInputs()) {
+       // Show error message
+     alert("Please enter correct values for all fields.");
+    } else {
+      // Proceed with form submission
+      console.log("Form submitted with values:", inputValue);
+    }
+  }
+
   return (
     <div
       style={{
@@ -147,9 +185,11 @@ const [inputValue, setInputValue] = useState({
               <Typography>Leads you trying to generate</Typography>
               <TextField
                 id="outlined-basic"
-                placeholder="₹1000"
+                placeholder="1000"
                 variant="outlined"
                 size="small"
+                value={inputValue.leads}
+                onChange={handleLeadsTextFieldChange}
               />
             </div>
             <div>
@@ -167,6 +207,7 @@ const [inputValue, setInputValue] = useState({
                 />
                 <TextField
                   id="outlined-basic"
+                  label='in Rupees(₹)'
                   value={inputValue.CPMValue}
                   onChange={handleCPMTextFieldChange}
                   variant="outlined"
@@ -243,7 +284,7 @@ const [inputValue, setInputValue] = useState({
           </div>
         </CardContent>
         <CardActions sx={{display: "flex", justifyContent: 'center', marginBottom: '2rem'}}>
-            <StyledButton>SUMBIT</StyledButton>
+            <StyledButton onClick={handleSubmit}>SUBMIT</StyledButton>
         </CardActions>
       </Card>
     </div>
