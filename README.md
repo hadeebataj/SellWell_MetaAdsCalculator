@@ -1,1 +1,0 @@
-# SellWell_MetaAdsCalculator
