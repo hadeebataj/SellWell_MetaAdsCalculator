@@ -8,16 +8,25 @@ import {
 } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { StyledButton } from "../StyledButton";
+import UserInformationDialogueBox from "../UserInformationDialogueBox";
 
 const LandingPage = () => {
-const [inputValue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState({
     leads: 1000,
     CPMValue: 150,
     CTRValue: 1,
     CRValue: 20,
-    LCValue: 80
-})
+    LCValue: 80,
+  });
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const CPMMarks = [
     {
@@ -65,70 +74,70 @@ const [inputValue, setInputValue] = useState({
 
   const handleLeadsTextFieldChange = (event) => {
     setInputValue({
-        ...inputValue,
-        leads: Number(event.target.value)
-    })
-  }
+      ...inputValue,
+      leads: Number(event.target.value),
+    });
+  };
 
   const handleCPMSliderChange = (event, newValue) => {
     setInputValue({
-        ...inputValue,
-        CPMValue: newValue,
-    })
-  }
+      ...inputValue,
+      CPMValue: newValue,
+    });
+  };
 
   const handleCPMTextFieldChange = (event) => {
     setInputValue({
-        ...inputValue,
-        CPMValue: Number(event.target.value) //check for range condition
-    })
-  }
+      ...inputValue,
+      CPMValue: Number(event.target.value), //check for range condition
+    });
+  };
 
   const handleCTRSliderChange = (event, newValue) => {
     setInputValue({
-        ...inputValue,
-        CTRValue: newValue,
-    })
-  }
+      ...inputValue,
+      CTRValue: newValue,
+    });
+  };
 
   const handleCTRTextFieldChange = (event) => {
     setInputValue({
-        ...inputValue,
-        CTRValue: Number(event.target.value) //check for range condition
-    })
-  }
+      ...inputValue,
+      CTRValue: Number(event.target.value), //check for range condition
+    });
+  };
 
   const handleCRSliderChange = (event, newValue) => {
     setInputValue({
-        ...inputValue,
-        CRValue: newValue,
-    })
-  }
+      ...inputValue,
+      CRValue: newValue,
+    });
+  };
 
   const handleCRTextFieldChange = (event) => {
     setInputValue({
-        ...inputValue,
-        CRValue: Number(event.target.value) //check for range condition
-    })
-  }
+      ...inputValue,
+      CRValue: Number(event.target.value), //check for range condition
+    });
+  };
 
   const handleLCSliderChange = (event, newValue) => {
     setInputValue({
-        ...inputValue,
-        LCValue: newValue,
-    })
-  }
+      ...inputValue,
+      LCValue: newValue,
+    });
+  };
 
   const handleLCTextFieldChange = (event) => {
     setInputValue({
-        ...inputValue,
-        LCValue: Number(event.target.value) //check for range condition
-    })
-  }
+      ...inputValue,
+      LCValue: Number(event.target.value), //check for range condition
+    });
+  };
 
   const validateInputs = () => {
     const { CPMValue, CTRValue, CRValue, LCValue, leads } = inputValue;
- 
+
     if (
       CPMValue < 50 ||
       CPMValue > 1500 ||
@@ -142,19 +151,20 @@ const [inputValue, setInputValue] = useState({
     ) {
       return false;
     }
- 
+
     return true;
   };
 
   const handleSubmit = () => {
     if (!validateInputs()) {
-       // Show error message
-     alert("Please enter correct values for all fields.");
+      // Show error message
+      alert("Please enter correct values for all fields.");
     } else {
+      handleClickOpen();
       // Proceed with form submission
       console.log("Form submitted with values:", inputValue);
     }
-  }
+  };
 
   return (
     <div
@@ -162,7 +172,7 @@ const [inputValue, setInputValue] = useState({
         display: "flex",
         justifyContent: "center",
         marginTop: "6rem",
-        marginBottom: '6rem'
+        marginBottom: "6rem",
       }}
     >
       <Card sx={{ maxWidth: "70vw" }}>
@@ -172,7 +182,14 @@ const [inputValue, setInputValue] = useState({
           >
             Lead Generation for Landing Page
           </Typography>
-          <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: '2rem' }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 28,
+              marginTop: "2rem",
+            }}
+          >
             <div
               style={{
                 display: "flex",
@@ -207,7 +224,7 @@ const [inputValue, setInputValue] = useState({
                 />
                 <TextField
                   id="outlined-basic"
-                  label='in Rupees(₹)'
+                  label="in Rupees(₹)"
                   value={inputValue.CPMValue}
                   onChange={handleCPMTextFieldChange}
                   variant="outlined"
@@ -283,10 +300,17 @@ const [inputValue, setInputValue] = useState({
             </div>
           </div>
         </CardContent>
-        <CardActions sx={{display: "flex", justifyContent: 'center', marginBottom: '2rem'}}>
-            <StyledButton onClick={handleSubmit}>SUBMIT</StyledButton>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "2rem",
+          }}
+        >
+          <StyledButton onClick={handleSubmit}>SUBMIT</StyledButton>
         </CardActions>
       </Card>
+      <UserInformationDialogueBox open={open} handleClose={handleClose} />
     </div>
   );
 };
