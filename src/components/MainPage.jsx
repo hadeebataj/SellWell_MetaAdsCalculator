@@ -4,18 +4,18 @@ import CardActions from "@mui/material/CardActions";
 import "./MainPage.css";
 import LeadsDialogueBox from "./LeadsDialogueBox";
 import { StyledButton } from "./StyledButton";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [open, setOpen] = React.useState(false);
-  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    // history.push("/leads/landingpage");
+  const handleClick = () => {
+    navigate("/leads/landingpage");
     setOpen(false);
   };
 
@@ -80,7 +80,7 @@ const MainPage = () => {
           </StyledButton>
         </CardActions>
       </Card>
-      <LeadsDialogueBox open={open} handleClose={handleClose} />
+      <LeadsDialogueBox open={open} handleClose={handleClick} />
     </div>
   );
 };
