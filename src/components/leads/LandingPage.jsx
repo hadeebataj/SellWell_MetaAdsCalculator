@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardContent,
   Typography,
@@ -19,6 +19,25 @@ const LandingPage = () => {
     LCValue: 80,
   });
   const [open, setOpen] = React.useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [totalBudgetRequired, setTotalBudgetRequired] = useState();
+  const [costPerLead, setCostPerLead] = useState();
+
+  useEffect(() => {
+    const calculateOutput = () => {
+      const landingPageViews = inputValue.leads / (inputValue.CRValue / 100);
+      const linkClicks = landingPageViews / (inputValue.LCValue / 100);
+      const impressions = linkClicks / (inputValue.CTRValue / 100);
+
+      let totalBudgetRequired = (impressions / 1000) * inputValue.CPMValue;
+      setTotalBudgetRequired(totalBudgetRequired);
+
+      let costPerLead = totalBudgetRequired / inputValue.leads;
+      costPerLead = Math.floor(costPerLead) + (costPerLead % 1 > 0.4 ? 1 : 0);
+      setCostPerLead(costPerLead);
+    };
+    calculateOutput();
+  }, [showResults, inputValue]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -157,13 +176,19 @@ const LandingPage = () => {
 
   const handleSubmit = () => {
     if (!validateInputs()) {
-      // Show error message
       alert("Please enter correct values for all fields.");
     } else {
       handleClickOpen();
       // Proceed with form submission
-      console.log("Form submitted with values:", inputValue);
+      // console.log("Form submitted with values:", inputValue);
     }
+  };
+
+  console.log(showResults);
+
+  const updateShowResults = (state) => {
+    console.log(showResults);
+    setShowResults(state);
   };
 
   return (
@@ -171,8 +196,8 @@ const LandingPage = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        marginTop: "6rem",
-        marginBottom: "6rem",
+        marginTop: "2rem",
+        marginBottom: "2rem",
       }}
     >
       <Card sx={{ maxWidth: "70vw" }}>
@@ -199,7 +224,9 @@ const LandingPage = () => {
                 alignItems: "center",
               }}
             >
-              <Typography>Leads you trying to generate</Typography>
+              <Typography>
+                Enter the number of leads you want to generate
+              </Typography>
               <TextField
                 id="outlined-basic"
                 placeholder="1000"
@@ -298,11 +325,40 @@ const LandingPage = () => {
                 />
               </div>
             </div>
+            <div
+              style={{
+                display: showResults ? "flex" : "none",
+                flexDirection: "column",
+                gap: "2rem",
+                marginTop: "2rem",
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+                <Typography variant="h5">
+                  Ideal total budget for your campaign is
+                </Typography>
+                <Typography variant="h5" sx={{ color: "#ec4b46" }}>
+                  {`₹ ${totalBudgetRequired}`}
+                </Typography>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 10,
+                }}
+              >
+                <Typography variant="h5">Projected cost per lead</Typography>
+                <Typography variant="h5" sx={{ color: "#ec4b46" }}>
+                  {`₹ ${costPerLead}`}
+                </Typography>
+              </div>
+            </div>
           </div>
         </CardContent>
         <CardActions
           sx={{
-            display: "flex",
+            display: !showResults ? "flex" : "none",
             justifyContent: "center",
             marginBottom: "2rem",
           }}
@@ -310,7 +366,11 @@ const LandingPage = () => {
           <StyledButton onClick={handleSubmit}>SUBMIT</StyledButton>
         </CardActions>
       </Card>
-      <UserInformationDialogueBox open={open} handleClose={handleClose} />
+      <UserInformationDialogueBox
+        open={open}
+        handleClose={handleClose}
+        updateShowResults={updateShowResults}
+      />
     </div>
   );
 };

@@ -1,21 +1,23 @@
-import React from 'react';
+import React from "react";
 import { CardContent, Typography, Card } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
-import './MainPage.css';
-import LeadsDialogueBox from './LeadsDialogueBox';
-import { StyledButton } from './StyledButton';
-
+import "./MainPage.css";
+import LeadsDialogueBox from "./LeadsDialogueBox";
+import { StyledButton } from "./StyledButton";
+// import { useHistory } from "react-router-dom";
 
 const MainPage = () => {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  // const history = useHistory();
 
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    // history.push("/leads/landingpage");
+    setOpen(false);
+  };
 
   return (
     <div
@@ -73,18 +75,14 @@ const MainPage = () => {
           >
             LEADS
           </StyledButton>
-          <StyledButton
-            variant="contained"
-            size="large"
-            autoFocus
-          >
+          <StyledButton variant="contained" size="large" autoFocus>
             SALES
           </StyledButton>
         </CardActions>
       </Card>
-      <LeadsDialogueBox open={open} handleClose={handleClose}/>
+      <LeadsDialogueBox open={open} handleClose={handleClose} />
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;
