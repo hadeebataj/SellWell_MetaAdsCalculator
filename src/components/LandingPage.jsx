@@ -7,13 +7,14 @@ import {
   Slider,
 } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
-import { StyledButton } from "../StyledButton";
+import { StyledButton } from "./StyledButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import UserInformationDialogueBox from "../UserInformationDialogueBox";
+import UserInformationDialogueBox from "./UserInformationDialogueBox";
 
-const LandingPage = () => {
+const LandingPage = ({ type }) => {
   const [inputValue, setInputValue] = useState({
-    leads: 1000,
+    number: 1000,
+    // sales: 1000,
     CPMValue: 150,
     CTRValue: 1,
     CRValue: 20,
@@ -26,7 +27,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     const calculateOutput = () => {
-      const landingPageViews = inputValue.leads / (inputValue.CRValue / 100);
+      const landingPageViews = inputValue.number / (inputValue.CRValue / 100);
       const linkClicks = landingPageViews / (inputValue.LCValue / 100);
       const impressions = linkClicks / (inputValue.CTRValue / 100);
 
@@ -34,11 +35,28 @@ const LandingPage = () => {
       totalBudgetRequired = Number(totalBudgetRequired.toFixed(2));
       setTotalBudgetRequired(totalBudgetRequired);
 
-      let costPerLead = totalBudgetRequired / inputValue.leads;
+      let costPerLead = totalBudgetRequired / inputValue.number;
       costPerLead = Math.floor(costPerLead) + (costPerLead % 1 > 0.4 ? 1 : 0);
+      if (costPerLead == NaN) costPerLead = 0; // check operation
       setCostPerLead(costPerLead);
     };
-    calculateOutput();
+
+    const calculateOutputInstantForms = () => {
+      const linkClicks = inputValue.number / (inputValue.LCValue / 100);
+      const impressions = linkClicks / (inputValue.CTRValue / 100);
+
+      let totalBudgetRequired = (impressions / 1000) * inputValue.CPMValue;
+      totalBudgetRequired = Number(totalBudgetRequired.toFixed(2));
+      setTotalBudgetRequired(totalBudgetRequired);
+
+      let costPerLead = totalBudgetRequired / inputValue.number;
+      costPerLead = Math.floor(costPerLead) + (costPerLead % 1 > 0.4 ? 1 : 0);
+      if (costPerLead == NaN) costPerLead = 0; // check operation
+      setCostPerLead(costPerLead);
+    };
+
+    if (type === "leads" || "sales") calculateOutput();
+    else if (type === "instant forms") calculateOutputInstantForms();
   }, [showResults, inputValue]);
 
   const handleClickOpen = () => {
@@ -94,10 +112,17 @@ const LandingPage = () => {
   ];
 
   const handleLeadsTextFieldChange = (event) => {
-    setInputValue({
-      ...inputValue,
-      leads: Number(event.target.value),
-    });
+    if (type === "leads" || type === "instant forms") {
+      setInputValue({
+        ...inputValue,
+        number: Number(event.target.value),
+      });
+    } else if (type === "sales") {
+      setInputValue({
+        ...inputValue,
+        number: Number(event.target.value),
+      });
+    }
   };
 
   const handleCPMSliderChange = (event, newValue) => {
@@ -157,7 +182,7 @@ const LandingPage = () => {
   };
 
   const validateInputs = () => {
-    const { CPMValue, CTRValue, CRValue, LCValue, leads } = inputValue;
+    const { CPMValue, CTRValue, CRValue, LCValue, number: leads } = inputValue;
 
     if (
       CPMValue < 50 ||
@@ -188,6 +213,19 @@ const LandingPage = () => {
 
   const updateShowResults = (state) => {
     setShowResults(state);
+  };
+
+  const getFieldText = (type) => {
+    switch (type) {
+      case "leads":
+        return "Enter the number of leads you want to generate";
+      case "sales":
+        return "Enter the number of sales you want to generate";
+      case "instant forms":
+        return "Enter the number of leads you want to generate";
+      default:
+        return;
+    }
   };
 
   return (
@@ -223,15 +261,13 @@ const LandingPage = () => {
                 alignItems: "center",
               }}
             >
-              <Typography>
-                Enter the number of leads you want to generate
-              </Typography>
+              <Typography>{getFieldText(type)}</Typography>
               <TextField
                 id="outlined-basic"
                 placeholder="1000"
                 variant="outlined"
                 size="small"
-                value={inputValue.leads}
+                value={inputValue.number}
                 onChange={handleLeadsTextFieldChange}
               />
             </div>
@@ -317,7 +353,10 @@ const LandingPage = () => {
                 />
               </div>
             </div>
-            <div>
+            <div
+              hidden={type === "instant forms"}
+              style={{ display: type === "instant forms" ? "none" : null }}
+            >
               <Typography>Link Click to Landing Page %</Typography>
               <div style={{ display: "flex", flexDirection: "row", gap: 24 }}>
                 <Slider

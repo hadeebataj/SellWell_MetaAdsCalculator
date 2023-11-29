@@ -10,12 +10,25 @@ const MainPage = () => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const handleClickOpen = () => {
+  const handleLeadsClick = () => {
     setOpen(true);
   };
 
-  const handleClick = () => {
+  const handleLandingPageClick = () => {
     navigate("/leads/landingpage");
+    setOpen(false);
+  };
+
+  const handleInstantFormsClick = () => {
+    navigate("/leads/instantforms");
+    setOpen(false);
+  };
+
+  const handleSalesClick = () => {
+    navigate("/sales");
+  };
+
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -71,16 +84,26 @@ const MainPage = () => {
           <StyledButton
             variant="contained"
             size="large"
-            onClick={handleClickOpen}
+            onClick={handleLeadsClick}
+            autoFocus
           >
             LEADS
           </StyledButton>
-          <StyledButton variant="contained" size="large" autoFocus>
+          <StyledButton
+            variant="contained"
+            size="large"
+            onClick={handleSalesClick}
+          >
             SALES
           </StyledButton>
         </CardActions>
       </Card>
-      <LeadsDialogueBox open={open} handleClose={handleClick} />
+      <LeadsDialogueBox
+        open={open}
+        handleClose={handleClose}
+        handleLandingPageClick={handleLandingPageClick}
+        handleInstantFormsClick={handleInstantFormsClick}
+      />
     </div>
   );
 };
