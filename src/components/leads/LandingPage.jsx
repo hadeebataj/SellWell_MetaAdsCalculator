@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { StyledButton } from "../StyledButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import UserInformationDialogueBox from "../UserInformationDialogueBox";
 
 const LandingPage = () => {
@@ -30,6 +31,7 @@ const LandingPage = () => {
       const impressions = linkClicks / (inputValue.CTRValue / 100);
 
       let totalBudgetRequired = (impressions / 1000) * inputValue.CPMValue;
+      totalBudgetRequired = Number(totalBudgetRequired.toFixed(2));
       setTotalBudgetRequired(totalBudgetRequired);
 
       let costPerLead = totalBudgetRequired / inputValue.leads;
@@ -184,10 +186,7 @@ const LandingPage = () => {
     }
   };
 
-  console.log(showResults);
-
   const updateShowResults = (state) => {
-    console.log(showResults);
     setShowResults(state);
   };
 
@@ -256,6 +255,11 @@ const LandingPage = () => {
                   onChange={handleCPMTextFieldChange}
                   variant="outlined"
                   size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">₹</InputAdornment>
+                    ),
+                  }}
                 />
               </div>
             </div>
@@ -278,6 +282,11 @@ const LandingPage = () => {
                   onChange={handleCTRTextFieldChange}
                   variant="outlined"
                   size="small"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">%</InputAdornment>
+                    ),
+                  }}
                 />
               </div>
             </div>
@@ -300,6 +309,11 @@ const LandingPage = () => {
                   value={inputValue.CRValue}
                   variant="outlined"
                   size="small"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">%</InputAdornment>
+                    ),
+                  }}
                 />
               </div>
             </div>
@@ -322,6 +336,11 @@ const LandingPage = () => {
                   value={inputValue.LCValue}
                   variant="outlined"
                   size="small"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">%</InputAdornment>
+                    ),
+                  }}
                 />
               </div>
             </div>
