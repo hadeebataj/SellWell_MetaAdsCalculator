@@ -228,6 +228,19 @@ const LandingPage = ({ type }) => {
     }
   };
 
+  const getTitleText = (type) => {
+    switch (type) {
+      case "leads":
+        return "Lead Generation for Landing Page";
+      case "sales":
+        return "Sales Generation for Landing Page";
+      case "instant forms":
+        return "Lead Generation for Instant Forms";
+      default:
+        return;
+    }
+  };
+
   return (
     <div
       style={{
@@ -244,7 +257,7 @@ const LandingPage = ({ type }) => {
             sx={{ fontSize: "2rem", fontWeight: "500", textAlign: "center" }}
             className={styles.typography}
           >
-            Lead Generation for Landing Page
+            {getTitleText(type)}
           </Typography>
           <div
             style={{
