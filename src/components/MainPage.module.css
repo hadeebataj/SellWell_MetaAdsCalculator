@@ -27,3 +27,18 @@
 .main-page__button:focus {
   box-shadow: 0 0 0 0.2rem rgba(253, 111, 106, 1);
 }
+
+@media (max-width: 600px) {
+  .card {
+    min-width: 100vw;
+  }
+
+  .cardContent {
+    font-size: 1.5rem;
+  }
+
+  .cardActions {
+    gap: 4px !important;
+    padding-bottom: 2rem !important;
+  }
+}

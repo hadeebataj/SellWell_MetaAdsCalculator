@@ -3,6 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { StyledButton } from "./StyledButton";
+import styles from "./LeadsSelectionDialogBox.module.css";
 
 const LeadsSelectionDialogBox = ({
   open,
@@ -17,15 +18,22 @@ const LeadsSelectionDialogBox = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <div style={{ margin: "2rem" }}>
+      <div className={styles.dialogContainer}>
         <DialogTitle
           id="alert-dialog-title"
+          className={styles.dialogTitle}
           sx={{ fontSize: "2rem", textAlign: "center" }}
         >
           {"What lead generation method are you using?"}
         </DialogTitle>
         <DialogActions
-          sx={{ display: "flex", justifyContent: "center", gap: 10 }}
+          className={styles.dialogActions}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 10,
+            marginBottom: "1rem",
+          }}
         >
           <StyledButton variant="contained" onClick={handleInstantFormsClick}>
             INSTANT FORMS

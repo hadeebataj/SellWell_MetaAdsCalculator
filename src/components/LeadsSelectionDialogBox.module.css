@@ -1,0 +1,13 @@
+@media (max-width: 600px) {
+  .dialogContainer {
+    margin: 1rem;
+  }
+
+  .dialogTitle {
+    font-size: 1.5rem !important;
+  }
+
+  .dialogActions {
+    gap: 5px !important;
+  }
+}

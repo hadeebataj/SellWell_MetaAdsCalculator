@@ -1,0 +1,84 @@
+@media (max-width: 860px) {
+  .container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    min-width: 90vw;
+  }
+
+  .card {
+    max-width: 90vw !important;
+  }
+
+  .cardContent {
+    padding: 1rem;
+  }
+
+  .typography {
+    font-size: 1.5rem;
+  }
+
+  .flexColumn {
+    gap: 14px;
+    margin-top: 1rem;
+  }
+
+  .flexRow {
+    gap: 4px;
+  }
+
+  .sliderContainer {
+    gap: 12px !important;
+  }
+
+  .resultText {
+    font-size: 1.3em;
+  }
+
+  .cardActions {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 522px) {
+  .container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    min-width: 90vw;
+  }
+
+  .cardContent {
+    padding: 1rem;
+  }
+
+  .card {
+    max-width: 100vw !important;
+  }
+
+  .resultText {
+    font-size: 1em !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-width: 100vw;
+  }
+
+  .slider {
+    width: auto;
+  }
+
+  .sliderContainer {
+    flex-direction: column !important;
+  }
+
+  .resultText {
+    font-size: 1em !important;
+  }
+
+  .results {
+    flex-direction: column !important;
+  }
+}

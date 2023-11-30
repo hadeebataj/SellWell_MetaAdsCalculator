@@ -6,6 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { StyledButton } from "./StyledButton";
 import { TextField, Typography } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
+import styles from "./UserInformationDialogueBox.module.css";
 
 const UserInformationDialogueBox = ({
   open,
@@ -120,10 +121,11 @@ const UserInformationDialogueBox = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <div style={{ margin: "2rem" }}>
+      <div style={{ margin: "2rem" }} className={styles.container}>
         <DialogTitle
           id="alert-dialog-title"
           sx={{ fontSize: "2rem", textAlign: "center" }}
+          className={styles.dialogTitle}
         >
           {"Please provide your details to see the results"}
         </DialogTitle>
@@ -134,6 +136,7 @@ const UserInformationDialogueBox = ({
             alignItems: "left",
             gap: 4,
           }}
+          className={styles.dialogContent}
         >
           <div
             style={{
@@ -142,6 +145,7 @@ const UserInformationDialogueBox = ({
               alignItems: "center",
               gap: 10,
             }}
+            className={styles.textField}
           >
             <Typography minWidth={120}>Full Name*</Typography>
             <TextField
@@ -167,6 +171,7 @@ const UserInformationDialogueBox = ({
               alignItems: "center",
               gap: 10,
             }}
+            className={styles.textField}
           >
             <Typography minWidth={120}>Email Address*</Typography>
             <TextField
@@ -187,6 +192,7 @@ const UserInformationDialogueBox = ({
               alignItems: "center",
               gap: 10,
             }}
+            className={styles.textField}
           >
             <Typography minWidth={120}>Phone Number*</Typography>
             <TextField

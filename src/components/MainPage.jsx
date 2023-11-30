@@ -1,7 +1,7 @@
 import React from "react";
 import { CardContent, Typography, Card } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
-import "./MainPage.css";
+import styles from "./MainPage.module.css";
 import LeadsSelectionDialogBox from "./LeadsSelectionDialogBox";
 import { StyledButton } from "./StyledButton";
 import { useNavigate } from "react-router-dom";
@@ -34,14 +34,21 @@ const MainPage = () => {
 
   return (
     <div
+      className={styles.container}
       style={{
         display: "flex",
         justifyContent: "center",
         marginTop: "6rem",
       }}
     >
-      <Card sx={{ maxWidth: "70vw", backgroundColor: "#222222" }}>
-        <CardContent sx={{ padding: "2rem", color: "white" }}>
+      <Card
+        className={styles.card}
+        sx={{ maxWidth: "70vw", backgroundColor: "#222222" }}
+      >
+        <CardContent
+          className={styles.cardContent}
+          sx={{ padding: "2rem", color: "white" }}
+        >
           <Typography
             sx={{
               fontSize: "2rem",
@@ -74,6 +81,7 @@ const MainPage = () => {
           </Typography>
         </CardContent>
         <CardActions
+          className={styles.cardActions}
           sx={{
             display: "flex",
             justifyContent: "center",

@@ -10,6 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import { StyledButton } from "./StyledButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import UserInformationDialogueBox from "./UserInformationDialogueBox";
+import styles from "./LandingPage.module.css";
 
 const LandingPage = ({ type }) => {
   const [inputValue, setInputValue] = useState({
@@ -235,11 +236,13 @@ const LandingPage = ({ type }) => {
         marginTop: "2rem",
         marginBottom: "2rem",
       }}
+      className={styles.container}
     >
-      <Card sx={{ maxWidth: "70vw" }}>
-        <CardContent sx={{ padding: "3rem" }}>
+      <Card sx={{ maxWidth: "70vw" }} className={styles.card}>
+        <CardContent sx={{ padding: "3rem" }} className={styles.cardContent}>
           <Typography
             sx={{ fontSize: "2rem", fontWeight: "500", textAlign: "center" }}
+            className={styles.typography}
           >
             Lead Generation for Landing Page
           </Typography>
@@ -250,6 +253,7 @@ const LandingPage = ({ type }) => {
               gap: 28,
               marginTop: "2rem",
             }}
+            className={styles.flexColumn}
           >
             <div
               style={{
@@ -259,6 +263,7 @@ const LandingPage = ({ type }) => {
                 gap: 8,
                 alignItems: "center",
               }}
+              className={styles.flexRow}
             >
               <Typography>{getFieldText(type)}</Typography>
               <TextField
@@ -272,7 +277,10 @@ const LandingPage = ({ type }) => {
             </div>
             <div>
               <Typography>Cost per 1,000 Impressions (CPM)</Typography>
-              <div style={{ display: "flex", flexDirection: "row", gap: 24 }}>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: 24 }}
+                className={styles.sliderContainer}
+              >
                 <Slider
                   value={inputValue.CPMValue}
                   step={5}
@@ -282,6 +290,7 @@ const LandingPage = ({ type }) => {
                   marks={CPMMarks}
                   onChange={handleCPMSliderChange}
                   sx={{ width: 350 }}
+                  className={styles.slider}
                 />
                 <TextField
                   id="outlined-basic"
@@ -300,7 +309,10 @@ const LandingPage = ({ type }) => {
             </div>
             <div>
               <Typography>Click-Through Rate (CTR)</Typography>
-              <div style={{ display: "flex", flexDirection: "row", gap: 24 }}>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: 24 }}
+                className={styles.sliderContainer}
+              >
                 <Slider
                   value={inputValue.CTRValue}
                   step={0.1}
@@ -310,6 +322,7 @@ const LandingPage = ({ type }) => {
                   marks={CTRMarks}
                   onChange={handleCTRSliderChange}
                   sx={{ width: 350 }}
+                  className={styles.slider}
                 />
                 <TextField
                   id="outlined-basic"
@@ -327,7 +340,10 @@ const LandingPage = ({ type }) => {
             </div>
             <div>
               <Typography>Conversion Rate on Landing Page %</Typography>
-              <div style={{ display: "flex", flexDirection: "row", gap: 24 }}>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: 24 }}
+                className={styles.sliderContainer}
+              >
                 <Slider
                   value={inputValue.CRValue}
                   step={0.5}
@@ -337,6 +353,7 @@ const LandingPage = ({ type }) => {
                   marks={CRMarks}
                   onChange={handleCRSliderChange}
                   sx={{ width: 350 }}
+                  className={styles.slider}
                 />
                 <TextField
                   id="outlined-basic"
@@ -357,7 +374,10 @@ const LandingPage = ({ type }) => {
               style={{ display: type === "instant forms" ? "none" : null }}
             >
               <Typography>Link Click to Landing Page %</Typography>
-              <div style={{ display: "flex", flexDirection: "row", gap: 24 }}>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: 24 }}
+                className={styles.sliderContainer}
+              >
                 <Slider
                   value={inputValue.LCValue}
                   onChange={handleLCSliderChange}
@@ -367,6 +387,7 @@ const LandingPage = ({ type }) => {
                   valueLabelDisplay="auto"
                   marks={LCMarks}
                   sx={{ width: 350 }}
+                  className={styles.slider}
                 />
                 <TextField
                   id="outlined-basic"
@@ -390,11 +411,18 @@ const LandingPage = ({ type }) => {
                 marginTop: "2rem",
               }}
             >
-              <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
-                <Typography variant="h5">
+              <div
+                className={styles.results}
+                style={{ display: "flex", flexDirection: "row", gap: 10 }}
+              >
+                <Typography variant="h5" className={styles.resultText}>
                   Ideal total budget for your campaign is
                 </Typography>
-                <Typography variant="h5" sx={{ color: "#ec4b46" }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: "#ec4b46" }}
+                  className={styles.resultText}
+                >
                   {`₹ ${totalBudgetRequired}`}
                 </Typography>
               </div>
@@ -404,9 +432,16 @@ const LandingPage = ({ type }) => {
                   flexDirection: "row",
                   gap: 10,
                 }}
+                className={styles.results}
               >
-                <Typography variant="h5">Projected cost per lead</Typography>
-                <Typography variant="h5" sx={{ color: "#ec4b46" }}>
+                <Typography variant="h5" className={styles.resultText}>
+                  Projected cost per lead
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{ color: "#ec4b46" }}
+                  className={styles.resultText}
+                >
                   {`₹ ${costPerLead}`}
                 </Typography>
               </div>
@@ -419,6 +454,7 @@ const LandingPage = ({ type }) => {
             justifyContent: "center",
             marginBottom: "2rem",
           }}
+          className={styles.cardActions}
         >
           <StyledButton onClick={handleSubmit}>SUBMIT</StyledButton>
         </CardActions>
