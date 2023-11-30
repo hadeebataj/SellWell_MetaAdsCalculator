@@ -14,7 +14,6 @@ import UserInformationDialogueBox from "./UserInformationDialogueBox";
 const LandingPage = ({ type }) => {
   const [inputValue, setInputValue] = useState({
     number: 1000,
-    // sales: 1000,
     CPMValue: 150,
     CTRValue: 1,
     CRValue: 20,
@@ -37,7 +36,7 @@ const LandingPage = ({ type }) => {
 
       let costPerLead = totalBudgetRequired / inputValue.number;
       costPerLead = Math.floor(costPerLead) + (costPerLead % 1 > 0.4 ? 1 : 0);
-      if (costPerLead == NaN) costPerLead = 0; // check operation
+      if (isNaN(costPerLead)) costPerLead = 0;
       setCostPerLead(costPerLead);
     };
 
@@ -51,13 +50,13 @@ const LandingPage = ({ type }) => {
 
       let costPerLead = totalBudgetRequired / inputValue.number;
       costPerLead = Math.floor(costPerLead) + (costPerLead % 1 > 0.4 ? 1 : 0);
-      if (costPerLead == NaN) costPerLead = 0; // check operation
+      if (isNaN(costPerLead)) costPerLead = 0;
       setCostPerLead(costPerLead);
     };
 
     if (type === "leads" || "sales") calculateOutput();
     else if (type === "instant forms") calculateOutputInstantForms();
-  }, [showResults, inputValue]);
+  }, [showResults, inputValue, type]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -135,7 +134,7 @@ const LandingPage = ({ type }) => {
   const handleCPMTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      CPMValue: Number(event.target.value), //check for range condition
+      CPMValue: Number(event.target.value),
     });
   };
 
@@ -149,7 +148,7 @@ const LandingPage = ({ type }) => {
   const handleCTRTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      CTRValue: Number(event.target.value), //check for range condition
+      CTRValue: Number(event.target.value),
     });
   };
 
@@ -163,7 +162,7 @@ const LandingPage = ({ type }) => {
   const handleCRTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      CRValue: Number(event.target.value), //check for range condition
+      CRValue: Number(event.target.value),
     });
   };
 
@@ -177,7 +176,7 @@ const LandingPage = ({ type }) => {
   const handleLCTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      LCValue: Number(event.target.value), //check for range condition
+      LCValue: Number(event.target.value),
     });
   };
 

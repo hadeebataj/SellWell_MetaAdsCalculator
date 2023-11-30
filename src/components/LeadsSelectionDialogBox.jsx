@@ -4,7 +4,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { StyledButton } from "./StyledButton";
 
-const LeadsDialogueBox = ({
+const LeadsSelectionDialogBox = ({
   open,
   handleClose,
   handleLandingPageClick,
@@ -43,4 +43,4 @@ const LeadsDialogueBox = ({
   );
 };
 
-export default LeadsDialogueBox;
+export default LeadsSelectionDialogBox;

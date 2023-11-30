@@ -2,7 +2,7 @@ import React from "react";
 import { CardContent, Typography, Card } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import "./MainPage.css";
-import LeadsDialogueBox from "./LeadsDialogueBox";
+import LeadsSelectionDialogBox from "./LeadsSelectionDialogBox";
 import { StyledButton } from "./StyledButton";
 import { useNavigate } from "react-router-dom";
 
@@ -98,7 +98,7 @@ const MainPage = () => {
           </StyledButton>
         </CardActions>
       </Card>
-      <LeadsDialogueBox
+      <LeadsSelectionDialogBox
         open={open}
         handleClose={handleClose}
         handleLandingPageClick={handleLandingPageClick}

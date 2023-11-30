@@ -63,11 +63,21 @@ const UserInformationDialogueBox = ({
     return true;
   };
 
+  const validateEmail = () => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!inputValue.email || !emailRegex.test(inputValue.email))
+      return "Please enter a valid email address.";
+  };
+
+  const validatePhone = () => {
+    const phoneRegex = /^\d{10}$/;
+    if (!inputValue.phone || !phoneRegex.test(inputValue.phone))
+      return "Please enter a valid phone number.";
+  };
+
   const handleViewResults = async () => {
-    if (!validateInputs()) {
-      // Show error message
-      alert("Please enter correct values for all fields.");
-    } else {
+    if (!validateInputs()) return;
+    else {
       console.log("Form submitted with values:", inputValue);
       updateShowResults(true);
       document.cookie = `userDetails=${JSON.stringify(
@@ -92,19 +102,21 @@ const UserInformationDialogueBox = ({
   };
 
   const handleCloseDialog = () => {
-    setInputValue({
-      name: "",
-      email: "",
-      phone: "",
-    });
-    handleClose();
+    if (validateInputs) {
+      setInputValue({
+        name: "",
+        email: "",
+        phone: "",
+      });
+      handleClose();
+    }
     handleViewResults();
   };
 
   return (
     <Dialog
       open={open}
-      onClose={handleCloseDialog}
+      onClose={validateInputs ? handleCloseDialog : false}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -131,7 +143,7 @@ const UserInformationDialogueBox = ({
               gap: 10,
             }}
           >
-            <Typography minWidth={120}>Full Name</Typography>
+            <Typography minWidth={120}>Full Name*</Typography>
             <TextField
               id="outlined-basic"
               onChange={handleNameChange}
@@ -139,6 +151,12 @@ const UserInformationDialogueBox = ({
               variant="outlined"
               size="small"
               fullWidth
+              error={!inputValue.name}
+              helperText={
+                !inputValue.name
+                  ? "Please enter your first and last name."
+                  : null
+              }
             />
           </div>
 
@@ -150,7 +168,7 @@ const UserInformationDialogueBox = ({
               gap: 10,
             }}
           >
-            <Typography minWidth={120}>Email Address</Typography>
+            <Typography minWidth={120}>Email Address*</Typography>
             <TextField
               id="outlined-basic"
               onChange={handleEmailChange}
@@ -158,6 +176,8 @@ const UserInformationDialogueBox = ({
               variant="outlined"
               size="small"
               fullWidth
+              error={validateEmail()}
+              helperText={validateEmail()}
             />
           </div>
           <div
@@ -168,7 +188,7 @@ const UserInformationDialogueBox = ({
               gap: 10,
             }}
           >
-            <Typography minWidth={120}>Phone Number</Typography>
+            <Typography minWidth={120}>Phone Number*</Typography>
             <TextField
               id="outlined-basic"
               onChange={handlePhoneNumberChange}
@@ -181,6 +201,8 @@ const UserInformationDialogueBox = ({
                 ),
               }}
               fullWidth
+              error={validatePhone()}
+              helperText={validatePhone()}
             />
           </div>
         </DialogContent>
