@@ -102,7 +102,7 @@ const UserInformationDialogueBox = ({
   };
 
   const handleCloseDialog = () => {
-    if (validateInputs) {
+    if (validateInputs()) {
       setInputValue({
         name: "",
         email: "",
@@ -116,7 +116,7 @@ const UserInformationDialogueBox = ({
   return (
     <Dialog
       open={open}
-      onClose={validateInputs ? handleCloseDialog : false}
+      onClose={handleCloseDialog}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
