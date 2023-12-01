@@ -4,11 +4,57 @@
   }
 
   .dialogTitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem !important;
   }
 
   .dialogContent {
-    gap: 2px;
+    gap: 2px !important;
+  }
+
+  .textField {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .dialogRow {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 490px) {
+  .container {
+    margin: 0.5rem !important;
+  }
+
+  .dialogTitle {
+    font-size: 1.5rem !important;
+  }
+
+  .dialogContent {
+    gap: 2px !important;
+  }
+
+  .textField {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .dialogRow {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    margin: 0.5rem !important;
+  }
+
+  .dialogTitle {
+    font-size: 1.2rem !important;
+  }
+
+  .dialogContent {
+    gap: 2px !important;
   }
 
   .textField {

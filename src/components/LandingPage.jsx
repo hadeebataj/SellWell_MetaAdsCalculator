@@ -5,6 +5,7 @@ import {
   Card,
   TextField,
   Slider,
+  useMediaQuery,
 } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { StyledButton } from "./StyledButton";
@@ -13,6 +14,7 @@ import UserInformationDialogueBox from "./UserInformationDialogueBox";
 import styles from "./LandingPage.module.css";
 
 const LandingPage = ({ type }) => {
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const [inputValue, setInputValue] = useState({
     number: 1000,
     CPMValue: 150,
@@ -42,7 +44,7 @@ const LandingPage = ({ type }) => {
     };
 
     const calculateOutputInstantForms = () => {
-      const linkClicks = inputValue.number / (inputValue.LCValue / 100);
+      const linkClicks = inputValue.number / (inputValue.CRValue / 100);
       const impressions = linkClicks / (inputValue.CTRValue / 100);
 
       let totalBudgetRequired = (impressions / 1000) * inputValue.CPMValue;
@@ -55,7 +57,7 @@ const LandingPage = ({ type }) => {
       setCostPerLead(costPerLead);
     };
 
-    if (type === "leads" || "sales") calculateOutput();
+    if (type === "leads" || type === "sales") calculateOutput();
     else if (type === "instant forms") calculateOutputInstantForms();
   }, [showResults, inputValue, type]);
 
@@ -276,7 +278,7 @@ const LandingPage = ({ type }) => {
                 gap: 8,
                 alignItems: "center",
               }}
-              className={styles.flexRow}
+              className={styles.firstFieldContainer}
             >
               <Typography>{getFieldText(type)}</Typography>
               <TextField
@@ -286,6 +288,7 @@ const LandingPage = ({ type }) => {
                 size="small"
                 value={inputValue.number}
                 onChange={handleLeadsTextFieldChange}
+                fullWidth={isSmallScreen}
               />
             </div>
             <div>
@@ -352,7 +355,11 @@ const LandingPage = ({ type }) => {
               </div>
             </div>
             <div>
-              <Typography>Conversion Rate on Landing Page %</Typography>
+              <Typography>
+                {type === "instant forms"
+                  ? "Conversion rate in % (CR)"
+                  : "Conversion Rate on Landing Page %"}
+              </Typography>
               <div
                 style={{ display: "flex", flexDirection: "row", gap: 24 }}
                 className={styles.sliderContainer}

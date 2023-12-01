@@ -22,7 +22,7 @@
     margin-top: 1rem;
   }
 
-  .flexRow {
+  .firstFieldContainer {
     gap: 4px;
   }
 
@@ -47,7 +47,7 @@
   }
 
   .cardContent {
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .card {
@@ -66,8 +66,45 @@
     max-width: 100vw;
   }
 
+  .cardContent {
+    padding: 2rem;
+  }
+
   .slider {
-    width: auto;
+    width: auto !important;
+  }
+
+  .sliderContainer {
+    flex-direction: column !important;
+  }
+
+  .resultText {
+    font-size: 1em !important;
+  }
+
+  .results {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-width: 100vw;
+  }
+
+  .cardContent {
+    padding: 2rem;
+  }
+
+  .firstFieldContainer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .slider {
+    width: auto !important;
   }
 
   .sliderContainer {

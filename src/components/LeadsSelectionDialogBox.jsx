@@ -35,13 +35,17 @@ const LeadsSelectionDialogBox = ({
             marginBottom: "1rem",
           }}
         >
-          <StyledButton variant="contained" onClick={handleInstantFormsClick}>
+          <StyledButton
+            variant="contained"
+            onClick={handleInstantFormsClick}
+            className={styles.buttonText}
+          >
             INSTANT FORMS
           </StyledButton>
           <StyledButton
             variant="contained"
             onClick={handleLandingPageClick}
-            autoFocus
+            className={styles.buttonText}
           >
             LANDING PAGE
           </StyledButton>

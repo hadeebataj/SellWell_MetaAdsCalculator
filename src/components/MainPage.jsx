@@ -93,7 +93,6 @@ const MainPage = () => {
             variant="contained"
             size="large"
             onClick={handleLeadsClick}
-            autoFocus
           >
             LEADS
           </StyledButton>
