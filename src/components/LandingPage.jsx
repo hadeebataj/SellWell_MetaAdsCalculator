@@ -151,7 +151,7 @@ const LandingPage = ({ type }) => {
   const handleCTRTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      CTRValue: Number(event.target.value),
+      CTRValue: Number(event.target.value >= 0.5 ? event.target.value : 0.5),
     });
   };
 
@@ -165,7 +165,7 @@ const LandingPage = ({ type }) => {
   const handleCRTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      CRValue: Number(event.target.value),
+      CRValue: Number(event.target.value >= 0.5 ? event.target.value : 0.5),
     });
   };
 
@@ -179,7 +179,7 @@ const LandingPage = ({ type }) => {
   const handleLCTextFieldChange = (event) => {
     setInputValue({
       ...inputValue,
-      LCValue: Number(event.target.value),
+      LCValue: Number(event.target.value >= 0.5 ? event.target.value : 0.5),
     });
   };
 
@@ -342,7 +342,7 @@ const LandingPage = ({ type }) => {
                 />
                 <TextField
                   id="outlined-basic"
-                  value={inputValue.CTRValue}
+                  value={inputValue.CTRValue >= 0.5 ? inputValue.CTRValue : 0.5}
                   onChange={handleCTRTextFieldChange}
                   variant="outlined"
                   size="small"
@@ -378,7 +378,7 @@ const LandingPage = ({ type }) => {
                 <TextField
                   id="outlined-basic"
                   onChange={handleCRTextFieldChange}
-                  value={inputValue.CRValue}
+                  value={inputValue.CRValue >= 0.5 ? inputValue.CRValue : 0.5}
                   variant="outlined"
                   size="small"
                   InputProps={{
@@ -412,7 +412,7 @@ const LandingPage = ({ type }) => {
                 <TextField
                   id="outlined-basic"
                   onChange={handleLCTextFieldChange}
-                  value={inputValue.LCValue}
+                  value={inputValue.LCValue >= 0.5 ? inputValue.LCValue : 0.5}
                   variant="outlined"
                   size="small"
                   InputProps={{
