@@ -39,11 +39,23 @@
   }
 }
 
+@media (max-width: 600px) {
+  .firstFieldContainer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+
 @media (max-width: 522px) {
   .container {
     margin-top: 1rem;
     margin-bottom: 1rem;
     min-width: 90vw;
+  }
+
+  .firstFieldContainer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
 
   .cardContent {
@@ -64,6 +76,11 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     max-width: 100vw;
+  }
+
+  .firstFieldContainer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
 
   .cardContent {

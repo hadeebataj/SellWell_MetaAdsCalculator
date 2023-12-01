@@ -14,7 +14,7 @@ import UserInformationDialogueBox from "./UserInformationDialogueBox";
 import styles from "./LandingPage.module.css";
 
 const LandingPage = ({ type }) => {
-  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const [inputValue, setInputValue] = useState({
     number: 1000,
     CPMValue: 150,
