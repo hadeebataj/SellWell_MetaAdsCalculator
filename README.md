@@ -76,7 +76,3 @@ site: https://sell-well-meta-ads-calculator.vercel.app/
 
 
 
-
-
-
-
