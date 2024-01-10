@@ -370,7 +370,7 @@ const LandingPage = ({ type }) => {
               >
                 <Slider
                   value={inputValue.CRValue}
-                  step={0.5}
+                  step={0.1}
                   max={100}
                   min={0.5}
                   valueLabelDisplay="auto"
@@ -405,7 +405,7 @@ const LandingPage = ({ type }) => {
                 <Slider
                   value={inputValue.LCValue}
                   onChange={handleLCSliderChange}
-                  step={0.5}
+                  step={0.1}
                   max={100}
                   min={0.5}
                   valueLabelDisplay="auto"
