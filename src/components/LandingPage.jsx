@@ -183,6 +183,10 @@ const LandingPage = ({ type }) => {
     });
   };
 
+  const formatWithCommas = (num) => {
+    return new Intl.NumberFormat("en-IN").format(num);
+  };
+
   const validateInputs = () => {
     const { CPMValue, CTRValue, CRValue, LCValue, number: leads } = inputValue;
 
@@ -443,7 +447,7 @@ const LandingPage = ({ type }) => {
                   sx={{ color: "#ec4b46" }}
                   className={styles.resultText}
                 >
-                  {`₹ ${totalBudgetRequired}`}
+                  {`₹ ${formatWithCommas(totalBudgetRequired)}`}
                 </Typography>
               </div>
               <div
@@ -462,7 +466,7 @@ const LandingPage = ({ type }) => {
                   sx={{ color: "#ec4b46" }}
                   className={styles.resultText}
                 >
-                  {`₹ ${costPerLead}`}
+                  {`₹ ${formatWithCommas(costPerLead)}`}
                 </Typography>
               </div>
             </div>
